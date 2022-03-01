@@ -1,0 +1,227 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<%
+options(digits = 3) 
+# careful do not use & as it is protected by latex
+# n_col = 6
+# r_full_list = list(r_Q_jaf1, r_Q_mal1, r_Q_jaf_IV1, r_S_jaf1, r_S_mal1, r_S_jaf_IV1)
+%>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabular*}{1.0\textwidth}{@{}l@{\extracolsep{\fill}} ccc ccc@{}}
+
+\toprule
+
+\addlinespace
+
+% Set up the first
+ & 
+ \multicolumn{3}{c}{Market-based Spillovers} &
+ \multicolumn{3}{c}{Outcome Spillovers}   \\
+
+ \cmidrule[0.5pt](l{0.5em} r{0.5em}){2-4} 
+ \cmidrule[0.5pt](l{0.5em} r{0.5em}){5-7} 
+
+& 
+ \multicolumn{1}{c}{Jaffe}       &
+ \multicolumn{1}{c}{Mahalanobis} &
+ \multicolumn{1}{c}{IV Jaffe}       &
+ \multicolumn{1}{c}{Jaffe}       &
+ \multicolumn{1}{c}{Mahalanobis} & 
+ \multicolumn{1}{c}{IV Jaffe}    
+ \\
+
+&
+ \multicolumn{1}{c}{(1)} & 
+ \multicolumn{1}{c}{(2)} & 
+ \multicolumn{1}{c}{(3)} &
+ \multicolumn{1}{c}{(4)} &
+ \multicolumn{1}{c}{(5)} &
+ \multicolumn{1}{c}{(6)} \\
+
+ \cmidrule[0.25pt](l{0.5em} r{0.5em}){1-7} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addlinespace
+
+\multicolumn{1}{l}{Bubble x Spill-SIC} &
+<% for (i_reg in seq(1, length(r_list))){ 
+	reg_tmp <- r_list[[i_reg]]
+	if (i_reg %in% c(1,4)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillsic1:bubble1"),]
+	} else if (i_reg %in% c(2,5)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillmalsic1:bubble1"),]
+	} else if (i_reg %in% c(3, 6)){
+		coef_tmp <- summary(reg_tmp)[["coeftable"]][c("fit_lgspillsic1:bubble1"),]
+	}
+%>	
+<% if (i_reg %in% c(1,2,4,5)){ %>
+	<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<% } else if (i_reg %in% c(3,6)){	%>
+	<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Std. Error"]]), "}" )), "$") %>
+<% } %>
+<%= paste0(ifelse(i_reg<6, "&", "")) %>
+<% } %>
+\\
+
+& 
+<% for (i_reg in seq(1, length(r_list))){ 
+	reg_tmp <- r_list[[i_reg]]
+	if (i_reg %in% c(1,4)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillsic1:bubble1"),]
+	} else if (i_reg %in% c(2,5)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillmalsic1:bubble1"),]
+	} else if (i_reg %in% c(3, 6)){
+		coef_tmp <- summary(reg_tmp)[["coeftable"]][c("fit_lgspillsic1:bubble1"),]
+	}
+%>	
+<% if (i_reg %in% c(1,2,4,5)){ %>
+  (<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<% } else if (i_reg %in% c(3,6)){	%>
+  (<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Std. Error"]] ) ), "$") %>)
+<% } %>
+<%= paste0(ifelse(i_reg<6, "&", "")) %>
+<% } %>
+\\
+
+\addlinespace
+
+\multicolumn{1}{l}{Spill-SIC} &
+<% for (i_reg in seq(1, length(r_list))){ 
+	reg_tmp <- r_list[[i_reg]]
+	if (i_reg %in% c(1,4)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillsic1"),]
+	} else if (i_reg %in% c(2,5)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillmalsic1"),]
+	} else if (i_reg %in% c(3, 6)){
+		coef_tmp <- summary(reg_tmp)[["coeftable"]][c("fit_lgspillsic1"),]
+	}
+%>	
+<% if (i_reg %in% c(1,2,4,5)){ %>
+	<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<% } else if (i_reg %in% c(3,6)){	%>
+	<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Std. Error"]]), "}" )), "$") %>
+<% } %>
+<%= paste0(ifelse(i_reg<6, "&", "")) %>
+<% } %>
+\\
+
+& 
+<% for (i_reg in seq(1, length(r_list))){ 
+	reg_tmp <- r_list[[i_reg]]
+	if (i_reg %in% c(1,4)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillsic1"),]
+	} else if (i_reg %in% c(2,5)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillmalsic1"),]
+	} else if (i_reg %in% c(3, 6)){
+		coef_tmp <- summary(reg_tmp)[["coeftable"]][c("fit_lgspillsic1"),]
+	}
+%>	
+<% if (i_reg %in% c(1,2,4,5)){ %>
+  (<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<% } else if (i_reg %in% c(3,6)){	%>
+  (<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Std. Error"]] ) ), "$") %>)
+<% } %>
+<%= paste0(ifelse(i_reg<6, "&", "")) %>
+<% } %>
+\\
+
+\multicolumn{1}{l}{Spill-Tech} &
+<% for (i_reg in seq(1, length(r_list))){ 
+	reg_tmp <- r_list[[i_reg]]
+	if (i_reg %in% c(1,4)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspilltec1"),]
+	} else if (i_reg %in% c(2,5)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillmaltec1"),]
+	} else if (i_reg %in% c(3, 6)){
+		coef_tmp <- summary(reg_tmp)[["coeftable"]][c("fit_lgspilltec1"),]
+	}
+%>	
+<% if (i_reg %in% c(1,2,4,5)){ %>
+	<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<% } else if (i_reg %in% c(3,6)){	%>
+	<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Std. Error"]]), "}" )), "$") %>
+<% } %>
+<%= paste0(ifelse(i_reg<6, "&", "")) %>
+<% } %>
+\\
+
+& 
+<% for (i_reg in seq(1, length(r_list))){ 
+	reg_tmp <- r_list[[i_reg]]
+	if (i_reg %in% c(1,4)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspilltec1"),]
+	} else if (i_reg %in% c(2,5)){
+		coef_tmp <- summary(reg_tmp)[["coefficients"]][c("lgspillmaltec1"),]
+	} else if (i_reg %in% c(3, 6)){
+		coef_tmp <- summary(reg_tmp)[["coeftable"]][c("fit_lgspilltec1"),]
+	}
+%>	
+<% if (i_reg %in% c(1,2,4,5)){ %>
+  (<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<% } else if (i_reg %in% c(3,6)){	%>
+  (<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Std. Error"]] ) ), "$") %>)
+<% } %>
+<%= paste0(ifelse(i_reg<6, "&", "")) %>
+<% } %>
+\\
+
+
+
+% CONTROLS
+\addlinespace
+\addlinespace
+
+\multicolumn{1}{l}{Fixed Effects} &
+\multicolumn{1}{c}{Y, F} & \multicolumn{1}{c}{Y, F} &
+\multicolumn{1}{c}{Y, F} & \multicolumn{1}{c}{Y, F} &
+\multicolumn{1}{c}{Y, F} & \multicolumn{1}{c}{Y, F} \\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addlinespace
+\multicolumn{1}{l}{Observations} &
+<% for (i_reg in seq(1, length(r_list))){ 
+	reg_tmp <- r_list[[i_reg]]
+	var_obs = ifelse(i_reg %in% c(3,6), "nobs", "N")
+%>	
+\multicolumn{1}{c}{<%= prettyNum(reg_tmp[[var_obs]],big.mark=",",scientific=FALSE) %>}
+<%= paste0(ifelse(i_reg<6, "&", "")) %>
+<% } %>
+\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \addlinespace
+\multicolumn{1}{l}{$R^2$} &
+<% for (i_reg in seq(1, length(r_list))){ 
+	reg_tmp <- r_list[[i_reg]]
+var_obs = ifelse(i_reg %in% c(3,6), "sq.cor", "r2")
+
+%>	
+<%=  %> 
+<%= cat("$", sprintf("%.2f", as.numeric( summary(reg_tmp)[[var_obs]] )), "$") %>
+<%= paste0(ifelse(i_reg<6, "&", "")) %>
+<% } %>
+\\
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{comment}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \end{comment}
+
+
+
+\bottomrule
+
+\end{tabular*}

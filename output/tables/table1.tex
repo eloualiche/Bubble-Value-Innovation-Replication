@@ -1,0 +1,265 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% PANEL A:
+% SC on unemployment, income, DTI and Debt
+% r_brew_list1 <- list(reg1b_unemp2, reg2b_unemp2, reg1b_inc, reg2b_inc)
+% r_brew_list2 <- list(reg1b_dti, reg2b_dti, reg1b_debt, reg2b_debt)
+% r_brew_list3 <- list(reg1b_debt, reg2b_debt, reg1b_mort, reg2b_mort, reg1b_other, reg2b_other, reg1b_car, reg2b_car)
+% r_brew_list4 <- list(reg3_iv_debt, reg3b_iv_debt, reg4_iv_debt, reg4b_iv_debt, reg5b_iv1_debt, reg5_iv1_debt, reg5b_iv2_debt, reg5_iv2_debt)
+% r_brew_list5 <- list(reg3_iv_dti, reg3b_iv_dti, reg4_iv_dti, reg4b_iv_dti, reg5_iv1_dti, reg5b_iv1_dti, reg5_iv2_dti, reg5b_iv2_dti)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabular*}{1.0\textwidth}{@{}l@{\extracolsep{\fill}}ccc ccc@{}}
+
+\toprule
+
+\addlinespace
+
+% Set up the first
+ & 
+ \multicolumn{3}{c}{\textbf{} Patent Level} &
+ \multicolumn{3}{c}{\textbf{} Firm Level}   \\
+
+ \cmidrule[0.5pt](l{0.5em} r{0.5em}){2-4} 
+ \cmidrule[0.5pt](l{0.5em} r{0.5em}){5-7} 
+
+&
+\multicolumn{1}{c}{(1)} & 
+\multicolumn{1}{c}{(2)} & 
+\multicolumn{1}{c}{(3)} &
+\multicolumn{1}{c}{(4)} & 
+\multicolumn{1}{c}{(5)} & 
+\multicolumn{1}{c}{(6)} \\
+
+ \cmidrule[0.25pt](l{0.5em} r{0.5em}){1-7} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addlinespace
+
+\multicolumn{1}{l}{Bubble Dummy} &
+	
+$ 0.317^{***} $
+&
+	
+$ 0.315^{***} $
+&
+	
+$ 0.186^{} $
+&
+	
+$ 0.514^{***} $
+&
+	
+$ 0.427^{***} $
+&
+	
+$ 0.265^{**} $
+
+
+\\
+& 
+	
+($ 0.094 $)
+&
+	
+($ 0.094 $)
+&
+	
+($ 0.132 $)
+&
+	
+($ 0.114 $)
+&
+	
+($ 0.123 $)
+&
+	
+($ 0.134 $)
+
+
+\\
+
+
+\addlinespace
+
+\multicolumn{1}{l}{Log Citations} &
+
+&
+	
+$ 0.016^{***} $
+
+&
+	
+$ 0.014^{***} $
+
+&
+
+&
+	
+$ 0.823^{***} $
+
+&
+	
+$ 0.821^{***} $
+
+
+
+\\
+\multicolumn{1}{l}{\ (forward looking)} &
+
+&
+	
+($ 0.004 $)
+
+&
+	
+($ 0.005 $)
+
+&
+
+&
+	
+($ 0.011 $)
+
+&
+	
+($ 0.011 $)
+
+
+
+\\
+
+
+\addlinespace 
+\multicolumn{1}{l}{Log Citations x bubble} &
+
+&
+
+&
+
+$ 0.054^{**} $
+
+&
+
+&
+
+&
+
+$ 0.061^{***} $
+
+
+
+\\
+\multicolumn{1}{l}{} &
+
+&
+
+&
+	
+($ 0.025 $)
+
+&
+
+&
+
+&
+	
+($ 0.012 $)
+
+
+
+\\
+
+
+
+% CONTROLS
+\addlinespace
+\addlinespace
+
+\multicolumn{1}{l}{Fixed Effects} &
+\multicolumn{1}{c}{Y, F} & \multicolumn{1}{c}{Y, F} & \multicolumn{1}{c}{Y, F} & 
+\multicolumn{1}{c}{Y, F} & \multicolumn{1}{c}{Y, F} & \multicolumn{1}{c}{Y, F} 
+\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addlinespace
+\multicolumn{1}{l}{Observations} &
+	
+\multicolumn{1}{c}{1,171,806}
+&
+	
+\multicolumn{1}{c}{1,171,806}
+&
+	
+\multicolumn{1}{c}{1,171,806}
+&
+	
+\multicolumn{1}{c}{47,886}
+&
+	
+\multicolumn{1}{c}{47,886}
+&
+	
+\multicolumn{1}{c}{47,886}
+
+
+\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \addlinespace
+\multicolumn{1}{l}{$R^2$} &
+	
+ 
+$ 0.68 $
+&
+	
+ 
+$ 0.68 $
+&
+	
+ 
+$ 0.68 $
+&
+	
+ 
+$ 0.89 $
+&
+	
+ 
+$ 0.94 $
+&
+	
+ 
+$ 0.94 $
+
+
+\\
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{comment}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \end{comment}
+
+
+
+\bottomrule
+
+\end{tabular*}

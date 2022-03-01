@@ -1,0 +1,267 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<%
+options(digits = 3) 
+# careful do not use & as it is protected by latex
+# n_col = 5
+%>
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabular*}{1.0\textwidth}{@{}l@{\extracolsep{\fill}} cc cc@{}}
+
+\toprule
+
+% Set up the first
+ & 
+ \multicolumn{4}{c}{Panel A: Fraction of stock holdings in industry} \\
+ \cmidrule[0.5pt](l{0.5em} r{0.5em}){2-5} 
+
+&
+ \multicolumn{1}{c}{(1)} & 
+ \multicolumn{1}{c}{(2)} & 
+ \multicolumn{1}{c}{(3)} &
+ \multicolumn{1}{c}{(4)} \\
+
+ \cmidrule[0.25pt](l{0.5em} r{0.5em}){1-5} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addlinespace
+
+\multicolumn{1}{l}{Bubble} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble"),]
+%>  
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble"),]
+%>  
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+% CONTROLS
+\addlinespace
+
+\multicolumn{1}{l}{Controls} &
+  \multicolumn{1}{c}{Yes} & 
+  \multicolumn{1}{c}{Yes} &
+  \multicolumn{1}{c}{Yes} &
+  \multicolumn{1}{c}{Yes} \\
+
+
+\multicolumn{1}{l}{Fixed Effects} &
+  \multicolumn{1}{c}{No} & 
+  \multicolumn{1}{c}{Industry} &
+  \multicolumn{1}{c}{Date} &
+  \multicolumn{1}{c}{Industry, Date} \\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addlinespace
+\multicolumn{1}{l}{Observations} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg]]
+%>  
+\multicolumn{1}{c}{<%= prettyNum(reg_tmp[["N"]],big.mark=",",scientific=FALSE) %>}
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \addlinespace
+\multicolumn{1}{l}{$R^2$} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg]]
+%>  
+<%=  %> 
+<%= cat("$", sprintf("%.2f", as.numeric( summary(reg_tmp)[["r2"]] )), "$") %>
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \cmidrule[0.25pt](l{0.5em} r{0.5em}){1-5} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set up the first
+ & 
+ \multicolumn{4}{c}{Panel B: Fraction of stock holdings by institution type} \\
+ \cmidrule[0.5pt](l{0.5em} r{0.5em}){2-5} 
+
+&
+ \multicolumn{1}{c}{(1)} & 
+ \multicolumn{1}{c}{(2)} & 
+ \multicolumn{1}{c}{(3)} &
+ \multicolumn{1}{c}{(4)} \\
+
+ \cmidrule[0.25pt](l{0.5em} r{0.5em}){1-5} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addlinespace
+
+\multicolumn{1}{l}{Bubble x Banks} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)bank"),]
+%>  
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)bank"),]
+%>  
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\multicolumn{1}{l}{Bubble x Insurance} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)insur"),]
+%>  
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)insur"),]
+%>  
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\multicolumn{1}{l}{Bubble x Inv. Advisers} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)adviser"),]
+%>  
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)adviser"),]
+%>  
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\multicolumn{1}{l}{Bubble x Mutual Funds} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)mutual"),]
+%>  
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)mutual"),]
+%>  
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\multicolumn{1}{l}{Bubble x Pension Funds} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)pension"),]
+%>  
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+  coef_tmp <- summary(reg_tmp)[["coefficients"]][c("bubble:as.factor(mgr_name)pension"),]
+%>  
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+
+% CONTROLS
+\addlinespace
+
+
+\multicolumn{1}{l}{Controls} &
+  \multicolumn{1}{c}{Yes} & 
+  \multicolumn{1}{c}{Yes} &
+  \multicolumn{1}{c}{Yes} &
+  \multicolumn{1}{c}{Yes} \\
+
+
+\multicolumn{1}{l}{Fixed Effects} &
+  \multicolumn{1}{c}{No} & 
+  \multicolumn{1}{c}{Industry} &
+  \multicolumn{1}{c}{Date} &
+  \multicolumn{1}{c}{Industry, Date} \\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addlinespace
+\multicolumn{1}{l}{Observations} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+%>  
+\multicolumn{1}{c}{<%= prettyNum(reg_tmp[["N"]],big.mark=",",scientific=FALSE) %>}
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \addlinespace
+\multicolumn{1}{l}{$R^2$} &
+<% for (i_reg in seq(1, 4)){ 
+  reg_tmp <- l_res[[i_reg+4]]
+%>  
+<%=  %> 
+<%= cat("$", sprintf("%.2f", as.numeric( summary(reg_tmp)[["r2"]] )), "$") %>
+<%= paste0(ifelse(i_reg<4, "&", "")) %>
+<% } %>
+\\
+
+
+\bottomrule
+
+\end{tabular*}

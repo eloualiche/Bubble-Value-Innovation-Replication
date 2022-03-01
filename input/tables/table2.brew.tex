@@ -1,0 +1,140 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<%
+options(digits = 3) 
+# careful do not use & as it is protected by latex
+%>
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabular*}{1.0\textwidth}{@{}l@{\extracolsep{\fill}} ccccc @{}}
+
+\toprule
+
+\addlinespace
+
+% Set up the first
+\multicolumn{1}{c}{}  & 
+ \multicolumn{5}{c}{Horizon (years)} \\
+
+ \cmidrule[0.5pt](l{0.5em} r{0.5em}){2-6} 
+
+&
+\multicolumn{1}{c}{(1)} & 
+\multicolumn{1}{c}{(2)} & 
+\multicolumn{1}{c}{(3)} &
+\multicolumn{1}{c}{(4)} & 
+\multicolumn{1}{c}{(5)} \\
+
+ \cmidrule[0.25pt](l{0.5em} r{0.5em}){1-6} 
+
+\addlinespace
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\multicolumn{1}{c}{}  & 
+ \multicolumn{5}{c}{Future Profits} \\
+
+ \cmidrule[0.5pt](l{0.5em} r{0.5em}){2-6} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Citations
+\multicolumn{1}{l}{Citations} &
+<% for (i_reg in seq(1, 5)){ 
+	reg_tmp  = r_l_P[[i_reg]]
+	coef_tmp = summary(reg_tmp)[["coefficients"]][c("l_z_Acw"),]
+%>	
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<5, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 5)){ 
+	reg_tmp  = r_l_P[[i_reg]]
+	coef_tmp = summary(reg_tmp)[["coefficients"]][c("l_z_Acw"),]
+%>	
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<5, "&", "")) %>
+<% } %>
+\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addlinespace
+% bubbles
+\multicolumn{1}{l}{Bubble dummy} &
+<% for (i_reg in seq(1, 5)){ 
+	reg_tmp  = r_l_P[[i_reg]]
+	coef_tmp = summary(reg_tmp)[["coefficients"]][c("bubble1"),]
+%>	
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<5, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 5)){ 
+	reg_tmp  = r_l_P[[i_reg]]
+	coef_tmp = summary(reg_tmp)[["coefficients"]][c("bubble1"),]
+%>	
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<5, "&", "")) %>
+<% } %>
+\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addlinespace
+% bubbles
+\multicolumn{1}{l}{Citations x bubble} &
+<% for (i_reg in seq(1, 5)){ 
+	reg_tmp  = r_l_P[[i_reg]]
+	coef_tmp = summary(reg_tmp)[["coefficients"]][c("bubble1:l_z_Acw"),]
+%>	
+<%= cat("$", paste0(paste0(sprintf("%.3f", as.numeric( coef_tmp[["Estimate"]] ))), paste0("^{", star_builder(coef_tmp[["Estimate"]], coef_tmp[["Cluster s.e."]]), "}" )), "$") %>
+<%= paste0(ifelse(i_reg<5, "&", "")) %>
+<% } %>
+\\
+& 
+<% for (i_reg in seq(1, 5)){ 
+	reg_tmp  = r_l_P[[i_reg]]
+	coef_tmp = summary(reg_tmp)[["coefficients"]][c("bubble1:l_z_Acw"),]
+%>	
+(<%= cat("$", sprintf("%.3f", as.numeric( coef_tmp[["Cluster s.e."]] ) ), "$") %>)
+<%= paste0(ifelse(i_reg<5, "&", "")) %>
+<% } %>
+\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addlinespace
+\multicolumn{1}{l}{Fixed Effects: year, industry} &
+\multicolumn{1}{c}{Y} & \multicolumn{1}{c}{Y} & \multicolumn{1}{c}{Y} &
+\multicolumn{1}{c}{Y} & \multicolumn{1}{c}{Y} 
+\\
+
+\addlinespace
+\multicolumn{1}{l}{Observations} &
+<% for (i_reg in seq(1, 5)){ 
+	reg_tmp  = r_l_P[[i_reg]]
+%>	
+\multicolumn{1}{c}{<%= prettyNum(reg_tmp[["N"]],big.mark=",",scientific=FALSE) %>}
+<%= paste0(ifelse(i_reg<5, "&", "")) %>
+<% } %>
+\\
+
+\addlinespace
+\multicolumn{1}{l}{$R^2$} &
+<% for (i_reg in seq(1, 5)){ 
+	reg_tmp = r_l_P[[i_reg]]
+%>	
+<%=  %> 
+<%= cat("$", sprintf("%.2f", as.numeric( summary(reg_tmp)[["r2"]] )), "$") %>
+<%= paste0(ifelse(i_reg<5, "&", "")) %>
+<% } %>
+\\
+
+
+\bottomrule
+
+\end{tabular*}

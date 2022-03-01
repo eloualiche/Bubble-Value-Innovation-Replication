@@ -1,0 +1,11 @@
+log
+
+# data that is not synced (see readme)
+input/dsf_vol_full.fst
+input/kpss_firm_innovation.rds
+input/kpss_supplement_firm.rds
+input/panel_13F.rds
+input/patents_dp.fst
+input/patents.fst
+
+
