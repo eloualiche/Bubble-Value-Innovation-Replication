@@ -1,0 +1,141 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SET foNt chOicES
+\usepackage{eulervm}
+
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+
+% If you go the XeTeX Route
+% \usepackage{xltxtra}
+% \usepackage{fontspec} %Font package
+% \usepackage{xunicode}
+% \setmonofont{Operator Mono Light}
+% \setmonofont{Hasklig}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{empheq}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage[page,header]{appendix}
+\usepackage{titletoc}
+\usepackage{eufrak}
+\usepackage{pdflscape}
+\usepackage{lscape}
+\usepackage{afterpage}
+\usepackage{floatpag}
+
+% ------------------------------------------------------------------------------------
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{tmp/}} % set of paths to search for images
+\usepackage{booktabs} % book-quality tables
+\usepackage{xfrac}    % for \sfrac macro
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{numprint}
+% \usepackage{fancyvrb} % extended verbatim environments
+  % \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+\usepackage{enumitem}
+
+% ------------------------------------------------------------------------------------
+% REQUIRED by huxtable
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{calc}
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage[online]{threeparttable}
+\usepackage{dcolumn}
+\usepackage{bbding}
+
+% ------------------------------------------------------------------------------------
+
+
+% ------------------------------------------------------------------------------------
+% \usepackage{subfigure}
+\usepackage{subcaption}
+\usepackage{comment}
+% ------------------------------------------------------------------------------------
+
+
+
+% ------------------------------------------------------------------------------------
+\PassOptionsToPackage{table,usenames,dvipsnames*,svgnames,hyperref}{xcolor}
+\RequirePackage{xcolor}
+\definecolor{light-gray}{gray}{0.85}
+\definecolor{dark-gray}{gray}{0.35}
+\colorlet{halfmaroon}{red!55!black}
+\definecolor{maroon}{RGB}{128, 0, 0}
+\usepackage[colorlinks,linktoc=page]{hyperref}
+
+% Metadata
+\hypersetup{pdfauthor={Loualiche},% 
+            pdftitle={Asset Pricing with Entry and Imperfect Competition},%
+            pdfkeywords={Economics, Finance},%
+            pdfsubject={Economics, Finance},%
+            pdfcreator={pdfLaTeX},%
+            citecolor=dark-gray,%
+            urlcolor=maroon,%
+            linkcolor=maroon,
+            filecolor=dark-gray}
+\setcounter{tocdepth}{2}
+
+\newcommand*\mygreybox[1]{%
+\colorbox{light-gray}{\hspace{2em}#1\hspace{2em}}}
+% ------------------------------------------------------------------------------------
+
+
+
+% ------------------------------------------------------------------------------------
+% http://www.latex-community.org/forum/viewtopic.php?f=45&t=3970
+% proble with nested input in tables: use a tex command within latex
+% \newcommand*\ExpandableInput[1]{\@@input #1 }
+\makeatletter\let\ExpandableInput\@@input\makeatother 
+% \def\input#1{\@@input #1 }
+
+
+\newcommand\fnote[1]{\captionsetup{font=footnotesize,labelfont=normal,justification=normal}\caption*{#1}}
+\newcolumntype{L}{D{.}{.}{2,5}} % for dcolumn package
+\newcolumntype{d}{D{.}{.}{-1}}
+\newcolumntype{Y}{D..{6.3}}
+% ------------------------------------------------------------------------------------
+
+
+
+% ------------------------------------------------------------------------------------
+% % tikz option s
+% \usepackage{tikz}
+% \usepackage{pgfplots}
+% \pgfplotsset{compat=1.16}
+% \usepackage{pgfpages}
+% \usepackage{tkz-tab, relsize, etoolbox}
+% \usetikzlibrary{arrows.meta, shadows, arrows}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DEfine short cuts
+\newcommand\mc{\operatorname{mc}}
+% \newcommand\m{\operatorname{\mathfrak{m}}} % \markup
+\newcommand{\FCF}{\operatorname{FC}}
+\newcommand{\MPL}{\operatorname{MPL}}
+\newcommand{\la}{\boldsymbol{\left\langle}}
+\newcommand{\ra}{\boldsymbol{\right\rangle}}
+\newcommand{\esper}{\mathbf{E}}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\tnum}[1]{\texttt{\textcolor{maroon}{#1}}}
+% ------------------------------------------------------------------------------------
+
+
+
