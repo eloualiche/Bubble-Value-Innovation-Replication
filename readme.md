@@ -25,4 +25,4 @@ Note that you will need access to the following dataset:
 ## Output
 
 - Generated tables are in `output/tables/`
-- You can view these tables in the `output/tables/view-tables.pdf`
+- You can view these tables in the [`output/tables/view-tables.pdf`](output/view-tables.pdf)
