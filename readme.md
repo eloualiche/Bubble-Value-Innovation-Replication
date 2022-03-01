@@ -7,11 +7,11 @@
 
 ## Code
 
-There are four main `R` files which all generates their corresponding table in the paper (`table1.R` for table 1, etc.).
+There are four main `R` files in the `src` folder which all generates their corresponding table in the paper (`table1.R` for table 1, etc.).
 
 
 ## Data 
-Note that you will need access to the following dataset:
+Note that you will need access to the following dataset in the `input` folder:
   
   - `BsVR.rds`: data from Bloom, Schankerman, and Van Reenen (2013) used to estimate spillover. This dataset is directly drawn from their [replication code](https://www.econometricsociety.org/content/supplement-identifying-tehcnology-spillovers-and-product-market-rivalry). This dataset is **included** in the repo. 
   - `dsf_vol_full.fst`: includes volatility at the stock level from WRDS daily stock file. `table4.R` estimates this dataset starting from the raw daily stock file. This dataset is not included in the repo. Please email us if you cannot generate it.
