@@ -58,7 +58,7 @@ dt_kpss[, bubble0 := fifelse(bubble==1, 0, 1) ]
 
 # -----------------------------------------------------------------------------
 # REGRESSIONS FOR ALL HORIZONS: PROFITS ON CITATION PATENTS AND SM PATENTS
-run_val_desires <- function(lhs = "logP"){
+run_regressions <- function(lhs = "logP"){
   for (i_lead in seq(1, 5)){
     message("# Running regressions for horizon: .... ", i_lead)
     dt_reg_bubbles <- dt_kpss[ is.finite(get(glue("df{i_lead}_{lhs}"))) & is.finite(LlogK) & 
@@ -80,7 +80,7 @@ run_val_desires <- function(lhs = "logP"){
 
 
 # -----------------------------------------------------------------------------
-c(reg_f1d_P, reg_f2d_P, reg_f3d_P, reg_f4d_P, reg_f5d_P) %<-% run_val_desires("logP")
+c(reg_f1d_P, reg_f2d_P, reg_f3d_P, reg_f4d_P, reg_f5d_P) %<-% run_regressions("logP")
 # c(reg_f1d_X, reg_f2d_X, reg_f3d_X, reg_f4d_X, reg_f5d_X) %<-% run_val_desires("logX")
 # c(reg_f1d_Y, reg_f2d_Y, reg_f3d_Y, reg_f4d_Y, reg_f5d_Y) %<-% run_val_desires("logY")
 
