@@ -22,6 +22,8 @@ Note that you will need access to the following dataset in the `input` folder:
   - `panel_13F.rds`: panel of stock/manager/quarter ownership from the thomson 13F dataset.
   - `patents.fst` and `patents_dp.fst`: panel of patent data from Kogan, Papanikolaou, Seru, and Stoffman (2017). See link above. 
 
+We do not include some of the files because of access rights and size. Email us if you would like to know more about how to access some of this data. 
+
 ## Output
 
 - Generated tables are in `output/tables/`
